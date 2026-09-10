@@ -1,3 +1,7 @@
-This is a SPoof of a story
+This is a Spoof of a story
 
-Hoe do I get out of here?
+How do I get out of here? //
+
+"Use 'file -> save' in the top left corner" -A voice said.
+
+This isn't even really a story
