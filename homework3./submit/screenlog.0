@@ -1,0 +1,108 @@
+klh5@cosmos-pkf:~/git/homework3/calculatePI/scripts\[?2004h[lh5@cosmos-pkf scripts]$ cat rin[K[Kun_in_container_calculatePI.sh 
+[?2004l#!/bin/sh
+# This script runs the calculatePI.sh script using the container `mnxb11_al9.latest.sif` with minimum required parameters
+# -B mounts the project directory inside the container so that is visible also inside the container
+apptainer run -B /projects:/projects /projects/hep/fs11/share/mnxb11/containers/mnxb11_al9.latest.sif ./calculatePI_setup.sh
+
+
+klh5@cosmos-pkf:~/git/homework3/calculatePI/scripts\[?2004h[lh5@cosmos-pkf scripts]$ cat calculateåi[K[Kpi.sbatch-Love<[KH[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kls
+[?2004l[0m[01;32mbuild_in_container_calculatePI.sh[0m    [01;32mcalculatePI_setup.sh[0m
+[01;32mcalculatePI_build.sh[0m                 [01;32mrun_in_container_calculatePI.sh[0m
+calculatePI.sbatch-LoveHagerberg.sh  screenlog.0
+klh5@cosmos-pkf:~/git/homework3/calculatePI/scripts\[?2004h[lh5@cosmos-pkf scripts]$ v[Kcat calculatePI.sbatch-LoveHagerberg.sh 
+[?2004l#!/bin/sh
+
+#SBATCH -J "MNXB11 Pi homework"
+#SBATCH --time=00:10:00
+#SBATCH -A hep2023-1-6
+#SBATCH --mem 32G
+
+# Launch the calculatePI.sh application script using the container script
+run_in_container_calculatePI.sh
+klh5@cosmos-pkf:~/git/homework3/calculatePI/scripts\[?2004h[lh5@cosmos-pkf scripts]$ sbatch calculatePI.sbatch-LoveHagerberg.sh 
+[?2004lSubmitted batch job 3785340
+klh5@cosmos-pkf:~/git/homework3/calculatePI/scripts\[?2004h[lh5@cosmos-pkf scripts]$ sbatch calculatePI.sbatch-LoveHagerberg.sh 
+[?2004lSubmitted batch job 3785341
+klh5@cosmos-pkf:~/git/homework3/calculatePI/scripts\[?2004h[lh5@cosmos-pkf scripts]$ ls
+[?2004l[0m[01;32mbuild_in_container_calculatePI.sh[0m    [01;32mcalculatePI_setup.sh[0m             slurm-3785340.out
+[01;32mcalculatePI_build.sh[0m                 [01;32mrun_in_container_calculatePI.sh[0m  slurm-3785341.out
+calculatePI.sbatch-LoveHagerberg.sh  screenlog.0
+klh5@cosmos-pkf:~/git/homework3/calculatePI/scripts\[?2004h[lh5@cosmos-pkf scripts]$ squeue -u
+[?2004lsqueue: option requires an argument -- 'u'
+Try "squeue --help" for more information
+klh5@cosmos-pkf:~/git/homework3/calculatePI/scripts\[?2004h[lh5@cosmos-pkf scripts]$ squeue -u[C-u[1Pu0-u[1P-u[C[C lh5
+[?2004l             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+           3785341       hep MNXB11 P      lh5  R       0:34      1 cx12
+           3785340       hep MNXB11 P      lh5  R       0:37      1 cx12
+klh5@cosmos-pkf:~/git/homework3/calculatePI/scripts\[?2004h[lh5@cosmos-pkf scripts]$ scontrol show job 3785340
+[?2004lJobId=3785340 JobName=MNXB11 Pi homework
+   UserId=lh5(400235) GroupId=lh5(400235) MCS_label=N/A
+   Priority=64504 Nice=0 Account=hep2023-1-6 QOS=normal
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:01:33 TimeLimit=00:10:00 TimeMin=N/A
+   SubmitTime=2026-10-04T19:39:28 EligibleTime=2026-10-04T19:39:28
+   AccrueTime=2026-10-04T19:39:28
+   StartTime=2026-10-04T19:39:28 EndTime=2026-10-04T19:49:28 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-04T19:39:28 Scheduler=Main
+   Partition=hep AllocNode:Sid=cosmos-pkf:2391882
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=cx12
+   BatchHost=cx12
+   NumNodes=1 NumCPUs=1 NumTasks=1 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=1,mem=32G,node=1,billing=1
+   AllocTRES=cpu=1,mem=32G,node=1,billing=1
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=1 MinMemoryNode=32G MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=/home/lh5/git/homework3/calculatePI/scripts/calculatePI.sbatch-LoveHagerberg.sh
+   WorkDir=/home/lh5/git/homework3/calculatePI/scripts
+   StdErr=/home/lh5/git/homework3/calculatePI/scripts/slurm-3785340.out
+   StdIn=/dev/null
+   StdOut=/home/lh5/git/homework3/calculatePI/scripts/slurm-3785340.out
+   Power=
+   
+
+klh5@cosmos-pkf:~/git/homework3/calculatePI/scripts\[?2004h[lh5@cosmos-pkf scripts]$ scontrol show job 3785340[12Pqueue -u lh5[Kls[Ksbatch calculatePI.sbatch-LoveHagerberg.sh [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[3Pcat[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kcat run_in_container_calculatePI.sh [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kcat calculatePI.sbatch-LoveHagerberg.sh [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[3@sbatch[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Ksqueue -u lh5control show job 3785340[Kscancel ontrol show job 3785340[1P 3785340[1P 3785340[1P 3785340[1P3785340[1P 3785340[1P 3785340[1P 3785340[1P 3785340[1P3785340[1P 3785340[1P 3785340[1P 3785340[1P 3785340[1P 3785340[1P 3785340[1P 3785340c 3785340a 3785340n 3785340c 3785340e 3785340l 3785340
+[?2004lklh5@cosmos-pkf:~/git/homework3/calculatePI/scripts\[?2004h[lh5@cosmos-pkf scripts]$ scancel 3785340[10@ontrol show job[C[C[C[C[C[C[C[C
+[?2004lJobId=3785340 JobName=MNXB11 Pi homework
+   UserId=lh5(400235) GroupId=lh5(400235) MCS_label=N/A
+   Priority=64504 Nice=0 Account=hep2023-1-6 QOS=normal
+   JobState=CANCELLED Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:15
+   RunTime=00:02:15 TimeLimit=00:10:00 TimeMin=N/A
+   SubmitTime=2026-10-04T19:39:28 EligibleTime=2026-10-04T19:39:28
+   AccrueTime=2026-10-04T19:39:28
+   StartTime=2026-10-04T19:39:28 EndTime=2026-10-04T19:41:43 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-04T19:39:28 Scheduler=Main
+   Partition=hep AllocNode:Sid=cosmos-pkf:2391882
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=cx12
+   BatchHost=cx12
+   NumNodes=1 NumCPUs=1 NumTasks=1 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=1,mem=32G,node=1,billing=1
+   AllocTRES=cpu=1,mem=32G,node=1,billing=1
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=1 MinMemoryNode=32G MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=/home/lh5/git/homework3/calculatePI/scripts/calculatePI.sbatch-LoveHagerberg.sh
+   WorkDir=/home/lh5/git/homework3/calculatePI/scripts
+   StdErr=/home/lh5/git/homework3/calculatePI/scripts/slurm-3785340.out
+   StdIn=/dev/null
+   StdOut=/home/lh5/git/homework3/calculatePI/scripts/slurm-3785340.out
+   Power=
+   
+
+klh5@cosmos-pkf:~/git/homework3/calculatePI/scripts\[?2004h[lh5@cosmos-pkf scripts]$ scontrol show job 3785340[10Pancel[C[C[C[C[C[C[C[C[10@ontrol show job[C[C[C[C[C[C[C[C[12Pqueue -u lh5
+[?2004l             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+           3785341       hep MNXB11 P      lh5  R       2:27      1 cx12
+klh5@cosmos-pkf:~/git/homework3/calculatePI/scripts\[?2004h[lh5@cosmos-pkf scripts]$ scancel 3785341
+[?2004lklh5@cosmos-pkf:~/git/homework3/calculatePI/scripts\[?2004h[lh5@cosmos-pkf scripts]$ scancel 3785341[2Pqueue -u lh5
+[?2004l             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+klh5@cosmos-pkf:~/git/homework3/calculatePI/scripts\[?2004h[lh5@cosmos-pkf scripts]$ screen -d
+[?2004lRemove dead screens with 'screen -wipe'.
+[2391881.pts-40.cosmos-pkf detached.]
+
+klh5@cosmos-pkf:~/git/homework3/calculatePI/scripts\[?2004h[lh5@cosmos-pkf scripts]$ 
